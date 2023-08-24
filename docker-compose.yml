@@ -1,0 +1,22 @@
+version: '1.0.0'
+
+services:
+  bot:
+    build: .
+    ports:
+      - '3000:3000'
+    env_file:
+      .env
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+    volumes:
+      - cache:/data
+volumes:
+  cache:
+    driver: local
+
+networks:
+  api-network:
+    driver: bridge
